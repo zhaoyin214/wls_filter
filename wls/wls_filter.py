@@ -64,13 +64,13 @@ def wls_filter(luma, lambda_=1, alpha=1.2):
     diff_log_luma_x = diff_log_luma_x.ravel()
 
     # construct a five-point spatially inhomogeneous Laplacian matrix
-    diff_log_luma = np.vstack((diff_log_luma_x, diff_log_luma_y))
+    diff_log_luma = np.vstack((diff_log_luma_y, diff_log_luma_x))
     smooth_weights = spdiags(data=diff_log_luma, diags=[-width, -1],
                              m=size, n=size)
 
-    w = np.pad(array=diff_log_luma_x, pad_width=(width, 0), mode="constant")
+    w = np.pad(array=diff_log_luma_y, pad_width=(width, 0), mode="constant")
     w = w[: -width]
-    n = np.pad(array=diff_log_luma_y, pad_width=(1, 0), mode="constant")
+    n = np.pad(array=diff_log_luma_x, pad_width=(1, 0), mode="constant")
     n = n[: -1]
 
     diag_data = 1 - (diff_log_luma_x + w + diff_log_luma_y + n)

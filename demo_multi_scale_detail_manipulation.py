@@ -85,6 +85,11 @@ image_coarse = lab2rgb(lab=lab_coarse)
 imsave(fname=os.path.join("./output", image_name + "_coarse.png"),
        arr=image_coarse)
 
+# combined
+image_combined = (image_coarse + image_medium + image_fine) / 3
+imsave(fname=os.path.join("./output", image_name + "_combined.png"),
+       arr=image_combined)
+
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(2, 2, 1)
 ax.imshow(image)
@@ -97,6 +102,15 @@ ax.imshow(image_medium)
 ax.axis("off")
 ax = fig.add_subplot(2, 2, 4)
 ax.imshow(image_coarse)
+ax.axis("off")
+plt.show()
+
+fig = plt.figure(figsize=(5, 8))
+ax = fig.add_subplot(2, 1, 1)
+ax.imshow(image)
+ax.axis("off")
+ax = fig.add_subplot(2, 1, 2)
+ax.imshow(image_combined)
 ax.axis("off")
 plt.show()
 
