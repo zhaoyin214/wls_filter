@@ -29,9 +29,9 @@ def tone_mapping(lab, luma_0, luma_1,
         lab (2-dim array, required) - the image in CIELAB color space
         luma_0, luma_1 (2-dim array, required) - smoothed versions of L of LAB
         val_0-val_2 (float, [-1, 1]) - compression/expansion params
-        exposure (float, [0,inf))
-        gamma (float, (0,1])
-        saturation (float, [0,inf))
+        exposure (float, [0, inf))
+        gamma (float, (0, 1])
+        saturation (float, [0, inf))
 
     return:
         out
@@ -51,7 +51,7 @@ def tone_mapping(lab, luma_0, luma_1,
     if val_1 > 0:
         detail_1 = sigmoid(x=detail_1 / 100, a=val_1) * 100
     elif val_1 < 0:
-        detail_0 = (1 + val_1) * detail_1
+        detail_1 = (1 + val_1) * detail_1
     else:
         pass
 
